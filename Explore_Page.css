@@ -1,0 +1,133 @@
+/* FONT IMPORT: We now import the "Inter" font from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap');
+
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    /* We use a standard sans-serif as a fallback */
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow: hidden;
+}
+
+/* --- Video Background --- */
+.video-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+#background-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- Logo and Header --- */
+header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 2rem 3rem;
+    z-index: 10;
+}
+
+.logo {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+}
+
+/* --- Main Content Container --- */
+.content {
+    background-color: rgba(0, 0, 0, 0.4);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    box-sizing: border-box;
+    padding: 0 3rem;
+    color: white;
+}
+
+/* --- FONT & COLOR CHANGES --- */
+
+.card {
+    /* FONT CHANGE: Apply the new "Inter" font */
+    font-family: 'Inter', sans-serif;
+    font-size: 5vw;
+    font-weight: 700;
+}
+
+.loader {
+    display: flex;
+    align-items: baseline; 
+    gap: 1.2vw;
+}
+
+.loader .words {
+    height: 5vw;
+    line-height: 5vw;
+    overflow: hidden;
+}
+
+.word {
+    display: block;
+    /* COLOR CHANGE: The scrolling words will now be a light blue */
+    color: #87CEFA; /* You can change this to any hex code you like */
+    animation: scroll-up 6s infinite;
+}
+
+@keyframes scroll-up {
+    0%   { transform: translateY(0); }
+    10%  { transform: translateY(0); }
+    25%  { transform: translateY(-5vw); }
+    35%  { transform: translateY(-5vw); }
+    50%  { transform: translateY(-10vw); }
+    60%  { transform: translateY(-10vw); }
+    85%  { transform: translateY(-15vw); }
+    100% { transform: translateY(-15vw); }
+}
+
+/* --- Minimal Explore Button --- */
+.explore-button-minimal {
+    text-decoration: none;
+    color: white;
+    background-color: transparent;
+    border: 1px solid white;
+    padding: 0.75rem 2rem;
+    border-radius: 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-top: 2.5rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.explore-button-minimal:hover {
+    background-color: white;
+    color: black;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    header { padding: 1.5rem 2rem; }
+    .content { padding: 0 2rem; }
+    .card { font-size: 10vw; }
+    .loader .words { height: 10vw; line-height: 10vw; }
+
+    @keyframes scroll-up {
+        25%  { transform: translateY(-10vw); }
+        35%  { transform: translateY(-10vw); }
+        50%  { transform: translateY(-20vw); }
+        60%  { transform: translateY(-20vw); }
+        85%  { transform: translateY(-30vw); }
+        100% { transform: translateY(-30vw); }
+    }
+}
