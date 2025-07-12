@@ -7,7 +7,7 @@
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
-      background: url('https://i.pinimg.com/736x/52/07/9a/52079a39c0023ed3e601c7c010be6188.jpg') no-repeat center center fixed;
+      background: url('https://images.unsplash.com/photo-1697224687433-de3d2a618872?q=80&w=1062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
       background-size: cover;
       color: #333;
     }
@@ -16,19 +16,12 @@
       justify-content: space-between;
       align-items: center;
       padding: 20px 40px;
-      background-color: #53754b;
+      background-color: #B19470;
       color: white;
     }
     .navbar .brand {
       font-size: 26px;
       font-weight: bold;
-    }
-    .navbar .search-bar input {
-      width: 50vw;
-      padding: 12px 20px;
-      border-radius: 25px;
-      border: none;
-      font-size: 16px;
     }
     .navbar .login {
       font-size: 16px;
@@ -48,15 +41,15 @@
       align-items: center;
       margin-bottom: 30px;
       padding: 25px;
-      background-color: #dae5df;
-      border-left: 8px solid #69ac82;
+      background-color: #fef9e7;
+      border-left: 8px solid #C58940;
       border-radius: 12px;
     }
     .profile-header img {
       width: 150px;
       height: 150px;
       border-radius: 50%;
-      border: 4px dashed #82c7a5;
+      border: 4px dashed #C58940;
       object-fit: cover;
     }
     .profile-header .info {
@@ -72,10 +65,10 @@
     }
     .left-box, .right-box {
       flex: 1;
-      background-color: #c7dcb9;
+      background-color: #ead0b2;
       border-radius: 12px;
-      padding: 20px;
-      border-left: 6px solid #6d9752;
+      padding: 20px; 
+      border-left: 6px solid #7E6752;
     }
     .left-box .line, .right-box .line {
       display: flex;
@@ -95,14 +88,14 @@
     }
     .right-box .fill {
       height: 100%;
-      background: #4caf50;
+      background: #473d11;
     }
     .desc {
       margin: 30px 0;
       font-size: 16px;
       line-height: 1.8;
-      background-color: #ddf0e3;
-      border-left: 8px solid #7cbe80;
+      background-color: #bcaa8c;
+      border-left: 8px solid #9E7E44;
       padding: 20px;
       border-radius: 10px;
     }
@@ -112,19 +105,19 @@
       margin: 30px 0;
     }
     .notice {
-      background-color: #b4d7a8;
-      border-left: 8px solid #5cb584;
+      background-color: #d7cda8;
+      border-left: 8px solid #b5b45c;
     }
     .highlight-box {
-      background-color: #b2dcbf;
-      border-left: 8px solid #6ed371;
+      background-color: #dcd7b2;
+      border-left: 8px solid #d3ca6e;
     }
     .highlight-box button {
       margin: 12px;
       padding: 12px 20px;
       border: none;
       border-radius: 25px;
-      background-color: #2e7d32;
+      background-color: #d29e4a;
       color: white;
       font-weight: 600;
       cursor: pointer;
@@ -132,7 +125,7 @@
     .footer {
       text-align: center;
       font-size: 14px;
-      background-color: rgba(158, 212, 157, 0.95);
+      background-color: #B19470;
       padding: 60px 30px;
       margin-top: 60px;
       position: relative;
@@ -148,21 +141,78 @@
       left: 50%;
       transform: translateX(-50%);
       font-size: 200px;
-      color: rgba(238, 232, 232, 0.253);
+      color: rgba(249, 247, 247, 0.07);
       pointer-events: none;
       z-index: 0;
     }
+    .sidebar {
+  position: fixed;
+  top: 0;
+  right: -300px;
+  width: 260px;
+  height: 100%;
+  background-color: #fff9e6;
+  box-shadow: -4px 0 8px rgba(0,0,0,0.2);
+  padding: 20px;
+  transition: right 0.3s ease;
+  z-index: 1000;
+}
+
+.sidebar.open {
+  right: 0;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  font-size: 20px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+
   </style>
 </head>
 <body>
 
   <div class="navbar">
-    <div class="brand">FlatmateX</div>
-    <div class="search-bar">
-      <input type="text" placeholder="Search flatmates, locations...">
-    </div>
-    <div class="login">Login</div>
+  <div class="brand">FlatmateX</div>
+  <!-- Removed search-bar -->
+  <div class="profile-icon" onclick="toggleSidebar()" style="cursor: pointer;">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="#fff" height="32" viewBox="0 0 24 24" width="32">
+      <path d="M0 0h24v24H0z" fill="none"/>
+      <path d="M12 12c2.67 0 8 1.34 8 4v2h-16v-2c0-2.66 5.33-4 8-4zm0-2c-1.66 
+        0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+    </svg>
   </div>
+</div>
+
 
   <div class="container">
     <div class="profile-header">
@@ -203,15 +253,23 @@
       Hi, I'm Riya! 😊 I'm a friendly and easy-going person currently pursuing my MCA (Master of Computer Applications). I'm clean, respectful of others' space, and always up for a good chat or a movie night — but I also enjoy my quiet time, especially during study hours.
     </div>
 
-    <div class="notice">
-      You can't message Riya
-    </div>
+    <div class="notice" style="display: flex; align-items: center; gap: 20px;">
+  <img src="riya.jpg" alt="Zoomed Profile" style="width: 80px; height: 80px; border-radius: 50%; border: 3px solid #C58940; object-fit: cover;">
+  <div>
+    <span style="font-size: 18px;">
+      <span style="color: green; font-weight: bold;">●</span> Online today
+    </span>
+    <!-- 
+    Or, if offline, replace the above with:
+    <span style="color: red; font-weight: bold;">●</span> Offline today 
+    -->
+  </div>
+</div>
 
     <div class="highlight-box">
-      To message Riya or view their phone number you need to be a member. Joining and communicating is free.<br><br>
-      <button>List your room</button>
-      <button>Create profile</button><br><br>
-      Already a member? <a href="#">Login now.</a>
+      To message Riya and Conform Her as your Flatmate.<br><br>
+      <button>Message</button>
+      <button>Conform</button><br><br>
     </div>
 
     <div class="notice">
@@ -223,8 +281,27 @@
     <h3 style="text-align:center">Find Compatible Flatmate</h3>
     <div class="info-block" style="text-align:center">Looking in: Pari Chok,DELHI</div>
   </div>
+  <!-- Sidebar Menu -->
+<div id="sidebar" class="sidebar">
+  <div class="sidebar-header">
+    <h3>Your Profile</h3>
+    <button onclick="toggleSidebar()" class="close-btn">✖</button>
+  </div>
+  <ul>
+    <li><a href="#">View Profile</a></li>
+    <li><a href="#">Edit Profile</a></li>
+    <li><a href="#">Messages</a></li>
+    <li><a href="#">Settings</a></li>
+    <li><a href="#">Logout</a></li>
+  </ul>
+</div>
 
-  <div class="footer">
+<script>
+  function toggleSidebar() {
+    document.getElementById("sidebar").classList.toggle("open");
+  }
+</script>
+<div class="footer">
     <div class="footer-section">
       Free to list, search & communicate
     </div>
@@ -239,6 +316,5 @@
     </div>
     <div class="watermark">FLATMATEX</div>
   </div>
-
 </body>
 </html>

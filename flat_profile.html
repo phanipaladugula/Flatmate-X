@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>FlatmateX - Flat Profile</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://images.unsplash.com/photo-1697224687433-de3d2a618872?q=80&w=1062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
+      background-size: cover;
+      color: #333;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: #B19470;
+      color: white;
+    }
+
+    .navbar .brand {
+      font-size: 26px;
+      font-weight: bold;
+    }
+
+    .profile-icon {
+      cursor: pointer;
+    }
+
+    .profile-icon svg {
+      fill: #fff;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 40px auto;
+      background-color: white;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .main-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-bottom: 30px;
+    }
+
+    .image-slider {
+      position: relative;
+      flex: 1;
+      min-width: 300px;
+    }
+
+    .image-slider img {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 4px solid #ead0b2;
+    }
+
+    .arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 36px;
+  color: #333;
+  cursor: pointer;
+  z-index: 1;
+  user-select: none;
+}
+
+
+    .arrow.left {
+      left: 10px;
+    }
+
+    .arrow.right {
+      right: 10px;
+    }
+
+    .flat-details {
+      flex: 1;
+      min-width: 300px;
+      background-color: #ead0b2;
+      border-left: 8px solid #7E6752;
+      border-radius: 10px;
+      padding: 40px;
+      height: fit-content;
+    }
+
+    .flat-details .line {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .flat-details .label {
+      font-weight: bold;
+      min-width: 160px;
+    }
+
+    .desc {
+      margin: 30px 0;
+      font-size: 16px;
+      line-height: 1.8;
+      background-color: #bcaa8c;
+      border-left: 8px solid #9E7E44;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .highlight-box {
+      background-color: #dcd7b2;
+      border-left: 8px solid #d3ca6e;
+      border-radius: 12px;
+      padding: 30px;
+      margin: 30px 0;
+    }
+
+    .highlight-box ul {
+      padding-left: 20px;
+    }
+      .highlight-box button {
+      margin: 12px;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 25px;
+      background-color: #d29e4a;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .footer {
+      text-align: center;
+      font-size: 14px;
+      background-color: #B19470;
+      padding: 60px 30px;
+      margin-top: 60px;
+      position: relative;
+    }
+
+    .footer-section {
+      margin: 20px 0;
+      color: #f0f8ff;
+      line-height: 1.8;
+    }
+
+    .footer .watermark {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 200px;
+      color: rgba(249, 247, 247, 0.07);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 0;
+      right: -300px;
+      width: 260px;
+      height: 100%;
+      background-color: #fff9e6;
+      box-shadow: -4px 0 8px rgba(0, 0, 0, 0.2);
+      padding: 20px;
+      transition: right 0.3s ease;
+      z-index: 1000;
+    }
+
+    .sidebar.open {
+      right: 0;
+    }
+
+    .sidebar-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .sidebar-header h3 {
+      margin: 0;
+      font-size: 20px;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+    }
+
+    .sidebar ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .sidebar ul li {
+      margin: 15px 0;
+    }
+
+    .sidebar ul li a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    @media (max-width: 800px) {
+      .main-section {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="brand">FlatmateX</div>
+    <div class="profile-icon" onclick="toggleSidebar()">
+      <svg xmlns="http://www.w3.org/2000/svg" height="32" viewBox="0 0 24 24" width="32">
+        <path d="M0 0h24v24H0z" fill="none" />
+        <path d="M12 12c2.67 0 8 1.34 8 4v2h-16v-2c0-2.66 
+                 5.33-4 8-4zm0-2c-1.66 0-3-1.34-3-3s1.34-3 
+                 3-3 3 1.34 3 3-1.34 3-3 3z"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Main Container -->
+  <div class="container">
+
+    <!-- Main Section -->
+    <div class="main-section">
+      <!-- Image Slider -->
+      <div class="image-slider">
+        <span class="arrow left" onclick="changeSlide(-1)">‹</span>
+        <img id="slider-image" src="https://s3-blog.homelane.com/design-ideas-pre/wp-content/uploads/2022/05/shutterstock_1918121534-768x512.jpg" alt="Flat Image">
+        <span class="arrow right" onclick="changeSlide(1)">›</span>
+      </div>
+
+      <!-- Flat Details -->
+      <div class="flat-details">
+        <div class="line"><span class="label">Location:</span><span>Green Park, Delhi</span></div>
+        <div class="line"><span class="label">Rent:</span><span>₹12,000 / month</span></div>
+        <div class="line"><span class="label">Size:</span><span>2 BHK, 800 sqft</span></div>
+        <div class="line"><span class="label">Furnishing:</span><span>Semi-furnished</span></div>
+        <div class="line"><span class="label">Floor:</span><span>2nd floor</span></div>
+        <div class="line"><span class="label">AC:</span><span>Yes</span></div>
+        <div class="line"><span class="label">Pet Friendly:</span><span>No</span></div>
+        <div class="line"><span class="label">Available From:</span><span>Immediately</span></div>
+      </div>
+    </div>
+
+    <!-- Description -->
+    <div class="desc">
+      <strong>Description</strong><br>
+      This spacious 2 BHK apartment in Green Park is perfect for working professionals or students. It features a well-lit living room, modular kitchen, and a private balcony. Located in a safe neighborhood with easy access to metro stations, grocery stores, and cafes.
+    </div>
+
+    <!-- Highlights -->
+    <div class="highlight-box">
+      <strong>Why you'll love this flat:</strong>
+      <ul>
+        <li>Walking distance to Green Park metro</li>
+        <li>Natural light in all rooms</li>
+        <li>Peaceful residential area</li>
+        <li>Near AIIMS and Hauz Khas market</li>
+      </ul>
+    </div>
+    <div class="highlight-box">
+      To message Owner and Conform this Flat.<br><br>
+      <button>Message</button>
+      <button>Conform</button><br><br>
+    </div>
+  </div>
+
+  <!-- Sidebar -->
+  <div id="sidebar" class="sidebar">
+    <div class="sidebar-header">
+      <h3>Your Profile</h3>
+      <button onclick="toggleSidebar()" class="close-btn">✖</button>
+    </div>
+    <ul>
+      <li><a href="#">View Profile</a></li>
+      <li><a href="#">My Listings</a></li>
+      <li><a href="#">Messages</a></li>
+      <li><a href="#">Settings</a></li>
+      <li><a href="#">Logout</a></li>
+    </ul>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <div class="footer-section">
+      Free to list, search & communicate
+    </div>
+    <div class="footer-section">
+      How to find a room | Verifications | Community standards
+    </div>
+    <div class="footer-section">
+      Help | Blog | Terms | Privacy
+    </div>
+    <div class="footer-section">
+      🇮🇳 India 🇬🇧 UK 🇨🇦 Canada 🇸🇬 Singapore
+    </div>
+    <div class="watermark">FLATMATEX</div>
+  </div>
+
+  <!-- JavaScript for Slider & Sidebar -->
+  <script>
+    const images = [
+      "https://img.interiorcompany.com/interior/webproduct/Contemporary%20Master%20Bedroom%20Design%20with%20Cream%20Fabricated%20Wall%20Panel.png?aio=w-768;",
+      "https://img.interiorcompany.com/interior/webproduct/779638755025906631937.png?aio=w-768;",
+      "https://img.interiorcompany.com/interior/webproduct/563638705103415244386.png?aio=w-768;",
+      "https://img.interiorcompany.com/interior/webproduct/tropical-balcony-design-with-concrete-walls-and-wooden-flooring.png?aio=w-768;",
+      "https://www.bhg.com/thmb/vfQXHcPNLIzNo9vZQxs-m6JUwz8=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/ShojiWhite-fc8a3fac280e410fb40f55972f1cd5b5.jpg"
+    ];
+    let currentIndex = 0;
+
+    function changeSlide(direction) {
+      currentIndex = (currentIndex + direction + images.length) % images.length;
+      document.getElementById("slider-image").src = images[currentIndex];
+    }
+
+    function toggleSidebar() {
+      document.getElementById("sidebar").classList.toggle("open");
+    }
+  </script>
+
+</body>
+</html>
