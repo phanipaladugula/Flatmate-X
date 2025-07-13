@@ -1,0 +1,600 @@
+/* style.css */
+
+:root {
+  --primary: #22223b;
+  --accent: #3a86ff;
+  --bg: #f8f9fa;
+  --card-bg: #fff;
+  --radius: 20px; /* This will be overridden for profile cards, but kept as default */
+  --shadow: 0 4px 24px 0 rgba(30, 34, 90, 0.09);
+  --header-height: 62px;
+  --transition: 0.3s cubic-bezier(.4,0,.2,1);
+  --dark-brown: rgb(77, 43, 20); /* New variable for the dark brown color */
+  --light-icon-color: rgb(240, 240, 240); /* New variable for lighter icon color */
+  --light-scroll-brown: #B08968; /* New variable for light brown scrollbar */
+}
+
+/* Universal box-sizing, margin, padding reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  /* Updated background image for the entire page */
+  background-image: url('https://images.unsplash.com/photo-1697224687433-de3d2a618872?q=80&w=1062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Ensures background stays fixed during scroll */
+  color: var(--primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header */
+.header {
+  height: var(--header-height);
+  background: var(--dark-brown); /* Darker brown header background */
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.header-left,
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.header-center {
+  flex: 1; /* Allows search bar to take available space */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  margin: 0 20px; /* Add some horizontal margin */
+}
+
+/* Search Bar Styling */
+.search-bar-container {
+  width: 100%;
+  max-width: 600px;
+  background: #ffffff; /* Pure white background for a crisp look */
+  border-radius: 30px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  position: relative; /* For icon positioning */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* More prominent shadow */
+  transition: all 0.3s ease; /* Smooth transition for hover/focus effects */
+  border: 1px solid transparent; /* Prepare for border on focus/hover */
+}
+
+.search-bar-container:hover {
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2); /* Even more prominent on hover */
+}
+
+/* Highlight search bar when input is focused */
+.search-bar-container:focus-within {
+  border-color: var(--accent); /* Accent color border on focus */
+  box-shadow: 0 0 0 3px rgba(58, 134, 255, 0.3), /* Subtle blue glow */
+              0 6px 16px rgba(0, 0, 0, 0.2); /* Maintain shadow */
+}
+
+.search-input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: 1.1rem;
+  color: black; /* Entered text color is black */
+  outline: none; /* Remove default input outline */
+  padding-right: 30px; /* Space for the icon */
+}
+
+.search-input::placeholder {
+  color: #bbb; /* Placeholder text color is lighter grey */
+  opacity: 1; /* Ensure placeholder is visible */
+}
+
+.search-icon {
+  position: absolute;
+  right: 15px;
+  color: #333; /* Search icon remains dark for contrast with white search bar */
+  font-size: 1.1rem;
+  cursor: pointer; /* Indicate it's clickable */
+}
+
+
+/* General Icon Styling */
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: 1.35rem;
+  color: var(--light-icon-color); /* Default to lighter color for home icon */
+  cursor: pointer;
+  transition: color 0.2s;
+  padding: 8px;
+  border-radius: 50%;
+  outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+/* Specific styling for the filter button - now same as home icon */
+#filterBtn {
+  color: var(--light-icon-color); /* Filter icon now matches light icon color */
+}
+
+.icon-btn:active,
+.icon-btn:focus {
+  background: rgba(255,255,255,0.1); /* Subtle highlight for active state */
+}
+.profile-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1); /* Subtle light background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.2); /* Subtle border */
+}
+.profile-circle i {
+  font-size: 1.4rem;
+  color: var(--light-icon-color); /* Profile icon now lighter */
+}
+
+/* Sidebar Overlay */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.19);
+  z-index: 98;
+  transition: opacity var(--transition);
+}
+.sidebar-overlay.active {
+  display: block;
+}
+
+/* Sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -320px;
+  width: 300px;
+  height: 100%;
+  background: #EEECE1; /* Light beige color from new background image for sidebar */
+  box-shadow: 3px 0 24px 0 rgba(30, 34, 90, 0.13);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  z-index: 120;
+  padding: 36px 26px 26px 22px;
+  transition: left var(--transition);
+  overflow-y: auto;
+}
+.sidebar.active {
+  left: 0;
+}
+.sidebar h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 22px;
+  color: var(--dark-brown); /* Sidebar 'Filters' heading color changed to dark brown */
+}
+.sidebar-section {
+  margin-bottom: 22px;
+  background-color: rgba(255, 255, 255, 0.6); /* Lighter, more opaque white background for sections */
+  border-radius: 12px; /* Rounded corners for sections */
+  padding: 15px; /* Padding inside sections */
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Subtle shadow for sections */
+}
+.sidebar-label {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.01rem;
+  margin-bottom: 7px;
+  color: var(--dark-brown); /* Sidebar labels' text color changed to dark brown */
+  gap: 8px;
+}
+.sidebar-label i { /* Sidebar label icons */
+    color: var(--dark-brown); /* Icon color changed to dark brown */
+}
+.sidebar-checkbox,
+.sidebar-radio {
+  margin-right: 9px;
+  accent-color: var(--dark-brown); /* Checkbox/radio accent color changed to dark brown */
+}
+.sidebar select {
+  width: 100%;
+  padding: 6px 12px;
+  border-radius: 9px;
+  border: 1px solid #e5eaf1;
+  background: #f7f9fa;
+  font-size: 1em;
+  margin-top: 7px;
+  color: var(--dark-brown); /* Select text color changed to dark brown */
+}
+.sidebar option {
+    color: var(--dark-brown); /* Options in select dropdown */
+}
+.sidebar .category-list label { /* Reusing category-list for consistent vertical layout */
+  display: flex;
+  align-items: center;
+  font-weight: 400;
+  margin-bottom: 3px;
+  font-size: 0.98em;
+  gap: 7px;
+  cursor: pointer;
+  color: var(--dark-brown); /* Category list labels text color changed to dark brown */
+}
+.sidebar .see-more {
+  color: var(--dark-brown); /* See More link color changed to dark brown */
+  font-size: 0.97em;
+  cursor: pointer;
+  margin-top: 2px;
+  margin-left: 24px;
+  display: block;
+}
+
+/* Age Slider Styling */
+.sidebar-range {
+  width: 100%;
+  -webkit-appearance: none; /* Override default look */
+  appearance: none;
+  height: 8px;
+  background: #ddd;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity .2s;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+.sidebar-range:hover {
+  opacity: 1;
+}
+
+.sidebar-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  background: var(--dark-brown); /* Age slider thumb color changed to dark brown */
+  border-radius: 50%;
+  cursor: grab;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+.sidebar-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  background: var(--dark-brown); /* Age slider thumb color changed to dark brown */
+  border-radius: 50%;
+  cursor: grab;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+}
+
+
+/* Main Content */
+.main-content {
+  max-width: 1200px;
+  margin: 38px auto 0 auto;
+  padding: 0 18px 42px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 38px;
+  flex-grow: 1; /* Allows content to grow and push footer down */
+  width: 100%; /* Ensure it takes full width */
+  max-width: 100%; /* Remove max-width to allow wider content */
+  padding: 0 5%; /* Add padding to the sides */
+  margin: 38px auto; /* Center the main content */
+}
+
+/* Flat Listings Grid (now horizontal scroll) */
+.flat-grid {
+  display: flex; /* Changed to flexbox */
+  flex-wrap: nowrap; /* Prevent wrapping */
+  overflow-x: auto; /* Enable horizontal scrolling */
+  -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  gap: 28px; /* Gap between cards */
+  padding-bottom: 15px; /* Space for scrollbar */
+}
+
+/* Custom Scrollbar Styling for Webkit browsers */
+.flat-grid::-webkit-scrollbar {
+  height: 10px; /* Height of horizontal scrollbar */
+}
+.flat-grid::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Color of the scrollbar track */
+  border-radius: 5px; /* Slightly rounded track */
+}
+.flat-grid::-webkit-scrollbar-thumb {
+  background: var(--light-scroll-brown); /* Light brown scrollbar thumb */
+  border-radius: 5px; /* Fully rounded thumb */
+}
+.flat-grid::-webkit-scrollbar-thumb:hover {
+  background: #997D61; /* Slightly darker light brown on hover */
+}
+
+
+.flat-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 4/3;
+  flex: 0 0 300px; /* Fixed width, do not shrink/grow */
+  display: flex;
+  align-items: flex-end;
+  min-height: 200px;
+}
+.flat-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.flat-gradient {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 60%;
+  background: linear-gradient(to top, rgba(0,0,0,0.82) 70%, rgba(0,0,0,0.0) 100%);
+  border-radius: 0 0 var(--radius) var(--radius);
+  z-index: 2;
+}
+.flat-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  padding: 22px 20px 16px 20px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.13rem;
+  letter-spacing: 1.2px;
+  line-height: 1.3;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.38);
+  white-space: pre-line;
+  border-radius: 0 0 var(--radius) var(--radius);
+  pointer-events: none;
+}
+
+/* Profile Grid */
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Adjusted minmax for better fit */
+  gap: 22px;
+  justify-content: center; /* Center profiles if they don't fill the row */
+}
+.profile-card {
+  background: var(--card-bg);
+  border-radius: 40px; /* Increased border-radius for more curve */
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 1/1; /* Make it square */
+  display: flex;
+  flex-direction: column; /* Stack content */
+  justify-content: flex-end; /* Push info to bottom */
+  width: 100%; /* Make card fill its grid column */
+  max-width: 250px; /* Increased max-width for better appearance */
+  margin: 0 auto; /* Center individual cards within their grid column */
+  min-height: auto; /* Adjust min-height for square aspect ratio */
+  /* padding-top removed here, as name is now part of profile-info content */
+}
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: 40px; /* Match card border-radius */
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.profile-gradient {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%; /* Gradient covers full height */
+  /* Adjusted gradient to be very transparent at top for maximal face visibility */
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0) 100%);
+  border-radius: 40px; /* Apply radius to gradient as well */
+  z-index: 2;
+}
+
+/* Name is now part of the left column's content */
+.profile-column-name { /* New class for the name heading within the column */
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9em; /* Smaller font size for name */
+  text-align: left; /* Name aligned left */
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+  border-bottom: 1px solid #fff; /* Thinner underline */
+  display: inline-block; /* Essential for border-bottom width to fit content */
+  padding-bottom: 2px; /* Space between text and underline */
+  margin-bottom: 5px; /* Space between name and traits list */
+  width: fit-content; /* Underline fits text width */
+  white-space: nowrap; /* Prevent name from wrapping if long */
+  margin-left: 15px; /* Adjust left margin for name (to align with text start) */
+}
+
+.profile-info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  padding: 15px; /* Overall padding for the text block */
+  color: #fff;
+  font-size: 0.65rem; /* Base font size for traits/wants (very small) */
+  line-height: 1.1; /* Tighter line height */
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5); /* Softened shadow */
+  border-radius: 0 0 40px 40px; /* Match bottom border-radius */
+  display: flex; /* Use flexbox for the two columns */
+  flex-direction: row; /* Always row for the traits/wants */
+  justify-content: space-between; /* Space between sections */
+  align-items: flex-start; /* Align text to the top of its section */
+  width: 100%;
+  height: auto; /* Allow height to adapt to content */
+  padding-top: 100px; /* Push content down to start below the name area */
+}
+.profile-traits,
+.profile-wants {
+  flex: 1; /* Each takes equal space */
+  padding: 0; /* No internal padding, controlled by profile-info padding */
+  text-align: left; /* Align text to left within its column */
+  margin-right: 5px; /* Small space between columns */
+}
+.profile-wants {
+  text-align: left; /* Align entire wants column to the left */
+  margin-left: 5px; /* Small space between columns */
+  margin-right: 0; /* No right margin for the wants column */
+}
+.profile-traits ul {
+  list-style: disc; /* Add disc bullets to traits */
+  padding-left: 1.2em; /* Padding for disc bullets */
+  margin-top: 0; /* Remove top margin */
+  margin-bottom: 0;
+}
+.profile-wants ul { /* Styling for the list under 'WANT' */
+  list-style: none; /* No bullets for wants */
+  padding-left: 0;
+  margin-top: 0; /* Remove top top margin */
+  margin-bottom: 0;
+  text-align: left; /* Items are naturally left-aligned within this left-aligned column */
+  width: 100%; /* Ensure it takes full width for text-align to be effective */
+}
+.profile-info ul li {
+  margin-bottom: 1px; /* Very small margin between list items */
+  font-weight: 500;
+  font-size: 1em; /* Relative to parent .profile-info font-size (0.65rem) */
+  text-transform: uppercase; /* Match uppercase from reference image */
+}
+.profile-wants h4 { /* Styling for the "WANT" heading */
+  font-weight: 700;
+  font-size: 1em; /* Relative to parent .profile-info font-size */
+  margin-bottom: 3px; /* Smaller margin below WANT heading */
+  color: #fff; /* Changed to white */
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  text-align: left; /* Changed to left-aligned */
+  width: 100%; /* Ensure it takes full width of its flex item to apply text-align */
+}
+
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .main-content {
+    padding: 0 3% 38px 3%;
+  }
+}
+@media (max-width: 700px) {
+  .header {
+    flex-direction: column;
+    gap: 7px;
+    height: auto;
+    padding: 12px 4px;
+  }
+  .header-center {
+    margin: 5px 0;
+    width: 90%;
+  }
+  .search-bar-container { /* Adjust search bar container on small screens */
+    max-width: 100%;
+  }
+  .main-content {
+    margin-top: 22px;
+    gap: 22px;
+    padding: 0 2% 22px 2%;
+  }
+  .flat-grid,
+  .profile-grid {
+    grid-template-columns: 1fr;
+  } /* Flats revert to single column, but will still be scrollable */
+  .flat-grid {
+    display: flex; /* Keep flex for horizontal scroll */
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+  .flat-card {
+    flex: 0 0 80vw; /* Adjust width for small screens to be percentage of viewport */
+  }
+  .profile-card {
+    max-width: 200px; /* Slightly smaller max-width for single column */
+  }
+  .profile-column-name {
+    font-size: 0.8em; /* Adjust name font size for smaller screens */
+    text-align: center; /* Center name when stacked */
+    margin-left: 0;
+  }
+  .profile-info {
+    flex-direction: column; /* Stack traits and wants vertically on very small screens */
+    gap: 8px; /* Adjusted gap when stacked */
+    padding: 8px 10px; /* Adjusted padding when stacked */
+  }
+  .profile-traits,
+  .profile-wants {
+    padding: 0; /* Remove horizontal padding when stacked */
+    text-align: center; /* Center text when stacked */
+    margin-left: 0; /* Remove margins when stacked */
+    margin-right: 0;
+  }
+  .profile-traits ul { /* When stacked, remove bullets for cleaner look */
+    list-style: none;
+    padding-left: 0;
+  }
+  .profile-wants h4 {
+    text-align: center; /* Center WANT heading when stacked */
+  }
+  .profile-wants {
+    /* No align-items needed if parent is text-align: center; */
+  }
+}
+.footer {
+      text-align: center;
+      font-size: 14px;
+      background-color: #B19470;
+      padding: 60px 30px;
+      margin-top: 60px;
+      position: relative;
+    }
+    .footer-section {
+      margin: 20px 0;
+      color:#f0f8ff;
+      line-height: 1.8;
+    }
+    .footer .watermark {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 200px;
+      color: rgba(249, 247, 247, 0.07);
+      pointer-events: none;
+      z-index: 0;
+    }
