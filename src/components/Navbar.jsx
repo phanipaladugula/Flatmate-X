@@ -1,3 +1,4 @@
+import "../styles/navbar.css";
 const Navbar = ({ onProfileClick }) => (
   <div className="flex justify-between items-center px-10 py-5 bg-[#B19470] text-white">
     <div className="text-2xl font-bold">FlatmateX</div>

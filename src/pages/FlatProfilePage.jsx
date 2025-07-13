@@ -3,6 +3,10 @@ import Footer from "../components/Footer";
 import Sidebar from "../components/Sidebar";
 import ImageSlider from "../components/ImageSlider";
 import { useState } from "react";
+import "../styles/imageSlider.css";
+import "../styles/sidebar.css";
+import "../styles/navbar.css";
+import "../styles/footer.css";
 
 const FlatProfilePage = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);

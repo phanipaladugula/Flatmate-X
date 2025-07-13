@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import "../styles/imageSlider.css";
 const images = [
   "https://img.interiorcompany.com/interior/webproduct/Contemporary%20Master%20Bedroom%20Design%20with%20Cream%20Fabricated%20Wall%20Panel.png?aio=w-768",
   "https://img.interiorcompany.com/interior/webproduct/779638755025906631937.png?aio=w-768",

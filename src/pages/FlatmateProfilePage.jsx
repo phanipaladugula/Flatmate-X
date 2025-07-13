@@ -2,6 +2,10 @@ import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import Footer from "../components/Footer";
 import { useState } from "react";
+import "../styles/imageSlider.css";
+import "../styles/sidebar.css";
+import "../styles/navbar.css";
+import "../styles/footer.css";
 
 const FlatmateProfilePage = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
