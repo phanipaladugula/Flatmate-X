@@ -1,0 +1,17 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: #B19470;
+  color: white;
+}
+
+.navbar-brand {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+.navbar-profile-icon {
+  cursor: pointer;
+}

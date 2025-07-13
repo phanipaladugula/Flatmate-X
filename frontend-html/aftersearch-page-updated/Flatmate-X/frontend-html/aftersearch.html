@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flatmate Finder - India</title>
+  <link rel="stylesheet" href="aftersearch.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Find Your Ideal Flat and Flatmate</h1>
+      <div class="search-bar">
+        <div class="search-dropdown-wrapper">
+          <input type="text" id="searchInput" placeholder="Search city..." autocomplete="off" readonly />
+          <div id="cityDropdown" class="city-dropdown"></div>
+        </div>
+        <button id="resetBtn" type="button" aria-label="Use Location" class="refresh-btn">
+          <!-- Location Pin SVG Icon -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 10c0 6-9 13-9 13S3 16 3 10a9 9 0 1 1 18 0z"/>
+            <circle cx="12" cy="10" r="3"/>
+          </svg>
+        </button>
+      </div>
+    </header>
+    <main id="results" class="results-grid"></main>
+  </div>
+  <footer style="text-align:center; margin-top:2rem; color: #7A6A58; font-size: 0.9rem;">
+    &copy; 2023 Flatmate Finder. All rights reserved.
+  </footer>
+  <script src="aftersearch.js"></script>
+</body>
+</html>
