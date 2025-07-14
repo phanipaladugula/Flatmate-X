@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Add the custom, responsive animation here */
+@layer utilities {
+  @keyframes scroll-up {
+    0%, 10% { transform: translateY(0); }
+    25%, 35% { transform: translateY(-10vw); }
+    50%, 60% { transform: translateY(-20vw); }
+    85%, 100% { transform: translateY(-30vw); }
+  }
+
+  /* Redefine the keyframes for medium screens and up */
+  @media (min-width: 768px) {
+    @keyframes scroll-up {
+      0%, 10% { transform: translateY(0); }
+      25%, 35% { transform: translateY(-5vw); }
+      50%, 60% { transform: translateY(-10vw); }
+      85%, 100% { transform: translateY(-15vw); }
+    }
+  }
+
+  .animate-scroll-up {
+    animation: scroll-up 6s infinite;
+  }
+}
