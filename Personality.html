@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Personality Quiz</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: url('https://images.unsplash.com/photo-1697224687433-de3d2a618872?q=80&w=1062&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 30px;
+      color: #3d2a1a;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      text-align: center;
+      color: #4D2B14;
+      background-color: #fffaf3;
+      padding: 20px;
+      border-radius: 14px;
+      box-shadow: 0 2px 10px rgba(77, 43, 20, 0.2);
+      margin-bottom: 30px;
+    }
+
+    .quiz-box {
+      background-color: #fffaf3;
+      border: 2px solid #d6bfa7;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .question-box {
+      margin-bottom: 30px;
+      background-color: #fcf7ee;
+      border: 1.5px solid #d9c3ab;
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    .question-text {
+  font-size: 1.15rem;
+  margin-bottom: 15px;
+  text-align: center; /* ✅ This centers the question text */
+}
+
+
+    .slider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .label-text {
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .label-agree {
+      color: #4caf50;
+    }
+
+    .label-disagree {
+      color: #8e44ad;
+    }
+
+    .circle-option {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: 2px solid #888;
+      cursor: pointer;
+      transition: 0.2s ease-in-out;
+    }
+
+    .circle-option.selected {
+      background-color: #a67c52;
+      border-color: #5a3a1a;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 30px;
+    }
+
+    button {
+      background-color: #4D2B14;
+      color: #fff;
+      border: none;
+      padding: 12px 28px;
+      border-radius: 8px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #7a5235;
+    }
+
+    button:disabled {
+      background-color: #aaa;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Personality Questionnaire</h1>
+
+  <div class="quiz-box" id="quizForm">
+    <!-- Each question -->
+    <div class="question-box" data-question="q1">
+      <div class="question-text">You tend to hold on to past memories for a long time.</div>
+      <div class="slider">
+        <span class="label-text label-agree">Agree</span>
+        <div class="circle-option" data-value="5"></div>
+        <div class="circle-option" data-value="4"></div>
+        <div class="circle-option" data-value="3"></div>
+        <div class="circle-option" data-value="2"></div>
+        <div class="circle-option" data-value="1"></div>
+        <span class="label-text label-disagree">Disagree</span>
+      </div>
+    </div>
+
+    <div class="question-box" data-question="q2">
+      <div class="question-text">You prefer to be calm even in worst situations.</div>
+      <div class="slider">
+        <span class="label-text label-agree">Agree</span>
+        <div class="circle-option" data-value="5"></div>
+        <div class="circle-option" data-value="4"></div>
+        <div class="circle-option" data-value="3"></div>
+        <div class="circle-option" data-value="2"></div>
+        <div class="circle-option" data-value="1"></div>
+        <span class="label-text label-disagree">Disagree</span>
+      </div>
+    </div>
+
+    <div class="question-box" data-question="q3">
+      <div class="question-text">You are the one who starts conversations in a new group.</div>
+      <div class="slider">
+        <span class="label-text label-agree">Agree</span>
+        <div class="circle-option" data-value="5"></div>
+        <div class="circle-option" data-value="4"></div>
+        <div class="circle-option" data-value="3"></div>
+        <div class="circle-option" data-value="2"></div>
+        <div class="circle-option" data-value="1"></div>
+        <span class="label-text label-disagree">Disagree</span>
+      </div>
+    </div>
+
+    <div class="question-box" data-question="q4">
+      <div class="question-text">You enjoy going out to bars or parties on weekends.</div>
+      <div class="slider">
+        <span class="label-text label-agree">Agree</span>
+        <div class="circle-option" data-value="5"></div>
+        <div class="circle-option" data-value="4"></div>
+        <div class="circle-option" data-value="3"></div>
+        <div class="circle-option" data-value="2"></div>
+        <div class="circle-option" data-value="1"></div>
+        <span class="label-text label-disagree">Disagree</span>
+      </div>
+    </div>
+
+    <div class="question-box" data-question="q5">
+      <div class="question-text">You find it hard to relax in a messy or cluttered space.</div>
+      <div class="slider">
+        <span class="label-text label-agree">Agree</span>
+        <div class="circle-option" data-value="5"></div>
+        <div class="circle-option" data-value="4"></div>
+        <div class="circle-option" data-value="3"></div>
+        <div class="circle-option" data-value="2"></div>
+        <div class="circle-option" data-value="1"></div>
+        <span class="label-text label-disagree">Disagree</span>
+      </div>
+    </div>
+
+    <div class="question-box" data-question="q6">
+      <div class="question-text">Your energy and focus tend to peak late in the evening or at night.</div>
+      <div class="slider">
+        <span class="label-text label-agree">Agree</span>
+        <div class="circle-option" data-value="5"></div>
+        <div class="circle-option" data-value="4"></div>
+        <div class="circle-option" data-value="3"></div>
+        <div class="circle-option" data-value="2"></div>
+        <div class="circle-option" data-value="1"></div>
+        <span class="label-text label-disagree">Disagree</span>
+      </div>
+    </div>
+
+    <div class="buttons">
+      <button id="prevBtn" type="button">Previous</button>
+      <button id="submitBtn" type="button">Submit</button>
+      <button id="nextBtn" type="button" disabled>Next</button>
+    </div>
+  </div>
+
+  <script>
+    let submitted = false;
+
+    document.querySelectorAll('.slider').forEach(slider => {
+      slider.querySelectorAll('.circle-option').forEach(option => {
+        option.addEventListener('click', () => {
+          // Deselect others
+          slider.querySelectorAll('.circle-option').forEach(opt => opt.classList.remove('selected'));
+          // Select this one
+          option.classList.add('selected');
+        });
+      });
+    });
+
+    document.getElementById('submitBtn').addEventListener('click', () => {
+      const questions = document.querySelectorAll('.question-box');
+      let allAnswered = true;
+
+      questions.forEach(q => {
+        if (!q.querySelector('.circle-option.selected')) {
+          allAnswered = false;
+        }
+      });
+
+      if (allAnswered) {
+        alert("Successfully Submitted!");
+        submitted = true;
+        document.getElementById('nextBtn').disabled = false;
+      } else {
+        alert("Please answer all questions before submitting.");
+      }
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (submitted) {
+        window.location.href = "flat_flatmate.html";
+      }
+    });
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      window.location.href = "login.html";
+    });
+  </script>
+
+</body>
+</html>
