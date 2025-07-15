@@ -1,0 +1,372 @@
+/* src/index.css */
+
+/* All @import rules should come FIRST */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css');
+
+/* Then @tailwind directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========== Root Variables ========== */
+:root {
+  --primary: #22223b;
+  --accent: #3a86ff;
+  --bg: #f8f9fa;
+  --card-bg: #fff;
+  --radius: 20px;
+  --shadow: 0 4px 24px 0 rgba(30, 34, 90, 0.09);
+  --header-height: 62px;
+  --transition: 0.3s cubic-bezier(.4,0,.2,1);
+  --dark-brown: #4D2B14;
+  --light-icon-color: #ffffff;
+}
+
+/* ========== Reset & Base ========== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg);
+  color: var(--primary);
+}
+
+/* ========== Header ========== */
+header {
+  height: var(--header-height);
+  background-color: var(--dark-brown);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 32px;
+  box-shadow: var(--shadow);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.icon-btn {
+  background: none;
+  border: none;
+  font-size: 1.35rem;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+
+.icon-btn:hover,
+.icon-btn:active {
+  background: rgba(255,255,255,0.1);
+}
+
+.profile-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.profile-circle i {
+  font-size: 1.4rem;
+  color: #ffffff;
+}
+
+/* ========== Search Bar ========== */
+.search-bar-container {
+  width: 100%;
+  max-width: 600px;
+  background: white;
+  border-radius: 30px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  position: relative;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  margin: 0 auto;
+}
+
+.search-input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  font-size: 1rem;
+  color: #333;
+  outline: none;
+  padding-right: 30px;
+}
+
+.search-input::placeholder {
+  color: #888;
+  font-style: italic;
+  font-weight: 500;
+}
+
+.search-icon {
+  position: absolute;
+  right: 15px;
+  color: #333;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+/* ========== Section Titles ========== */
+h2 {
+  font-size: 1.5rem;
+  color: var(--dark-brown);
+  margin: 32px 0 18px 32px;
+}
+
+/* ========== Flat Grid ========== */
+.flat-grid {
+  display: flex;
+  gap: 28px;
+  overflow-x: auto;
+  padding: 0 32px 16px;
+  scroll-behavior: smooth;
+}
+
+.flat-card {
+  background: var(--card-bg);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 4/3;
+  flex: 0 0 149px;
+  display: flex;
+  align-items: flex-end;
+  min-height: 130px;
+}
+
+.flat-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.flat-gradient {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 60%;
+  background: linear-gradient(to top, rgba(0,0,0,0.82), rgba(0,0,0,0));
+  z-index: 2;
+}
+
+.flat-text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  padding: 22px 20px 16px 20px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.13rem;
+  line-height: 1.3;
+  text-shadow: 0 2px 6px rgba(0,0,0,0.38);
+  white-space: pre-line;
+}
+
+/* ========== Profile Grid ========== */
+.profile-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+  padding: 40px;
+  justify-content: center;
+}
+
+.profile-card {
+  background: var(--card-bg);
+  border-radius: 40px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 1/1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  max-width: 260px;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.profile-gradient {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.3), rgba(0,0,0,0));
+  z-index: 2;
+  border-radius: 40px;
+}
+
+.profile-info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  padding: 15px;
+  color: #fff;
+  font-size: 0.65rem;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 0 0 40px 40px;
+  padding-top: 30px; /* reduced from 100px */
+}
+
+.profile-traits,
+.profile-wants {
+  flex: 1;
+  text-align: left;
+}
+
+.profile-traits ul {
+  list-style: disc;
+  padding-left: 1.2em;
+}
+
+.profile-wants ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.profile-info ul li {
+  margin-bottom: 1px;
+  font-weight: 500;
+  font-size: 1em;
+  text-transform: uppercase;
+}
+
+.profile-wants h4,
+.profile-column-name {
+  font-weight: 700;
+  font-size: 0.9em;
+  margin-bottom: 5px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #fff;
+  display: inline-block;
+  margin-left: 15px;
+}
+
+/* ========== Sidebar ========== */
+.sidebar {
+  position: fixed;
+  top: 72px;
+  left: -320px;
+  width: 300px;
+  height: calc(100% - 72px);
+  background: #EEECE1;
+  box-shadow: 3px 0 24px 0 rgba(30, 34, 90, 0.13);
+  border-radius: 0 20px 20px 0;
+  z-index: 120;
+  padding: 36px 26px 26px 22px;
+  transition: left 0.3s cubic-bezier(.4, 0, .2, 1);
+  overflow-y: auto;
+}
+
+.sidebar.active {
+  left: 0;
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.3);
+  z-index: 100;
+  display: none;
+}
+
+.sidebar-overlay.active {
+  display: block;
+}
+
+.sidebar h3 {
+  font-size: 1.4rem;
+  margin-bottom: 18px;
+  color: var(--dark-brown);
+  font-weight: 700;
+}
+
+.sidebar-section {
+  margin-bottom: 22px;
+  background: white;
+  border-radius: 15px;
+  padding: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+}
+
+.sidebar-label {
+  font-weight: bold;
+  font-size: 1.05rem;
+  display: block;
+  color: var(--dark-brown);
+  margin-bottom: 8px;
+}
+
+.category-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.95rem;
+  color: #333;
+  padding-left: 4px;
+}
+
+.sidebar-checkbox {
+  margin-right: 6px;
+}
+
+.sidebar-range {
+  width: 100%;
+  margin-top: 8px;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    top: 72px;
+    height: calc(100% - 72px);
+  }
+}
